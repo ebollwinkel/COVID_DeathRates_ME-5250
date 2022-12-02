@@ -12,6 +12,8 @@ import datetime as dt
 def scrape_country(country, website):
     if website == "Worldometer":
         scrape_worldometer(country)
+    elif website == "NYT": 
+        scrape_nyt(country)
 
 def scrape_worldometer(country):
     response = requests.get("https://www.worldometers.info/coronavirus/#countries")
@@ -157,3 +159,42 @@ def sliceCarrot(myString):
         return myString[startInd:endInd]
 scrape_country("All", "Worldometer")
 #print(sliceCarrot('<span style="color:#00B5F0; font-style:italic; ">MS Zaandam</span>'))
+
+
+def scrape_nyt(country):
+    # URL to New York Times World Covid Data
+    URL = "https://www.nytimes.com/interactive/2021/world/covid-cases.html"
+    page = requests.get(URL)
+
+    # Connect to URL and find data table
+    soup = BeautifulSoup(page.content, "html.parser")
+    tables = soup.findChildren('table')
+
+    # Get second table
+    my_table = tables[1]
+
+    # Find tbody children elements of the data table
+    tbody = my_table.findChildren(['tbody'])
+
+    # Find all tr elements in tbody
+    rows = tbody[1].find_all('tr')
+
+    # Create new dictionary for data and add time stamp
+    data = {}
+    data["Date Scraped"] = str(dt.datetime.now())
+
+    # Scrape data and save to data dictionary
+    for row in rows: 
+        country_element = row.find("td", class_="name")
+        deaths_element = row.find_all("td")
+        country_name = country_element.text.strip()
+        death_num = deaths_element[4].text.strip()
+        if(country_name.__contains__("\xa0›")): 
+            country_name = country_name[:len(country_name)-2]
+
+        data[country_name] = death_num
+    
+    # Save data to json file
+    with open("dataNYT.json", "w") as writeJSON:
+        json.dump(data, writeJSON, ensure_ascii=False)
+
