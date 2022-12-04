@@ -1,0 +1,15 @@
+Data Collection: 
+  We used the python API BeautifulSoup to scrape data from static sites. We connected directly to the sites using URLs and searched for
+  the elements containing the data, like a table. After isolating the section, we accessed the children elements that contained the actual 
+  data like country names and death rates. We stripped the html from the elements to save the useable data. Afterwards, we saved these names
+  and numbers to dictionaries with the country names as keys and death rates as values. These dictionaries were then "dumped" into a JSON file
+  and saved with a time stamp of when the data was collected.
+  
+JSON Organization: 
+  Because the data is saved in dictionaries, the death rates are accessable by name of the country. We used both Worldometer and New York Times website
+  for data scraping. The data for each website was saved differently due to the limited data available from NYT. The resulting data from each website 
+  will have daily death rates, but only Worldometer data will have cumulative. Worldometer also had many more countries listed; NYT only had 10 that were
+  loaded on the static site. So a simple scrape from each site would look something like this: 
+      "Worldometer" : {"Date Scraped": "2022-12-01 02:21:51.594214", "China": {"Total Deaths": 5233, "Daily Deaths": ""}, "USA": {"Total Deaths": 1105341, "Daily Deaths": 210}, ...}
+      "NYT" : {"Date Scraped": "2022-12-01 20:52:33.116252", "San Marino": "0", "Brunei": "0", "Hong Kong": "16.1", "South Korea": "49.3", "Japan": "143.1", "Palau": "0", 
+               "New Zealand": "4.3", "France": "62.7", "Andorra": "0.1", "Monaco": "0"}
