@@ -142,7 +142,7 @@ colors_purple = [purple()._colors[purple()._colors.index("Thistle")],
                  purple()._colors[purple()._colors.index("Indigo")],
                  purple()._colors[purple()._colors.index("SlateBlue")]]
 
-#browns
+#browns (for european countries)
 colors_brown = [brown()._colors[brown()._colors.index("Bisque")],
                  brown()._colors[brown()._colors.index("BurlyWood")],
                  brown()._colors[brown()._colors.index("RosyBrown")],
@@ -152,7 +152,7 @@ colors_brown = [brown()._colors[brown()._colors.index("Bisque")],
                  brown()._colors[brown()._colors.index("Peru")],
                  brown()._colors[brown()._colors.index("SaddleBrown")]]
 
-#greens
+#greens (for asian countries)
 colors_green = [green()._colors[green()._colors.index("LimeGreen")],
                 green()._colors[green()._colors.index("Chartreuse")],
                 green()._colors[green()._colors.index("SpringGreen")],
@@ -161,7 +161,7 @@ colors_green = [green()._colors[green()._colors.index("LimeGreen")],
                 green()._colors[green()._colors.index("SeaGreen")],
                 green()._colors[green()._colors.index("DarkGreen")]]
 
-#orange
+#orange (for americas countries)
 colors_orange = [orange()._colors[orange()._colors.index("OrangeRed")],
                  orange()._colors[orange()._colors.index("Coral")],
                  orange()._colors[orange()._colors.index("DarkOrange")],
@@ -186,6 +186,9 @@ daily_plot.legend.click_policy = "hide"
 cumulative_plot = figure(title="Cumulative Deaths due to COVID", x_range=countries, width=1400)
 
 #plot data
+cumulative_plot.vbar(x=european_countries, top=european_cumulative_deaths, color = colors_brown, legend_label= 'europe')
+cumulative_plot.vbar(x=asian_countries, top=asian_cumulative_deaths, color = colors_green, legend_label= 'asia')
+cumulative_plot.vbar(x=americas_countries, top=americas_cumulative_deaths, color = colors_orange, legend_label='americas')
 cumulative_plot.vbar(x=countries, top=cumulative_deaths, color=colors_purple, legend_label="cumulative deaths")
 
 #enable interactive legend
