@@ -1,1 +1,24 @@
-THIS IS A README FILE
+README FILE: 
+
+Instructions for use: 
+
+1. Call scrape_country identifying the desired website to scrape with a string. Available options are "Worldometer" or "NYT". These will access the following websites:
+  - "Worldometer" : "https://www.worldometers.info/coronavirus/#countries"
+  - "NYT" : "https://www.nytimes.com/interactive/2021/world/covid-cases.html"
+  Also include a string for desired country (Only available for "Worldometer")
+  For example: 
+      scrape_country("USA", "NYT") --> returns 10 countries and their daily death rates
+      scrape_country("USA", "Worldometer") --> returns death rates for "USA"
+      scrape_country("All", "Worldomenter") --> returns death rates for all availabe countries
+  
+2. Save the json file
+    - Data for both will be saved in dictionaries with a time stamp as the first entry. Country names are the keys and death rates are the values.
+    For example: 
+    "Worldometer" : {"Date Scraped": "2022-12-01 02:21:51.594214", USA": {"Total Deaths": 1105341, "Daily Deaths": 210}}
+    "NYT" :  {"Date Scraped": "2022-12-01 20:52:33.116252", "San Marino": "0", "Brunei": "0", "Hong Kong": "16.1", "South Korea": "49.3", 
+                "Japan": "143.1", "Palau": "0", "New Zealand": "4.3", "France": "62.7", "Andorra": "0.1", "Monaco": "0"}
+                
+                
+                
+                
+                
