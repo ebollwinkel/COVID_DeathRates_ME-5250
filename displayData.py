@@ -1,3 +1,6 @@
+#Script to plot data from data.json file using the bokeh module
+
+##### IMPORT NECESSARY MODULES #####
 #import json module
 import json
 
@@ -6,6 +9,7 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.colors.groups import blue, purple, green, orange, brown
 from bokeh.layouts import column
 
+#### GET DATA FROM JSON FILE (WORLDOMETER ONLY) ####
 #open json file for worldometer website
 json_data = open('data.json')
 
@@ -97,8 +101,9 @@ americas_cumulative_deaths = [cumulative_deaths[1],
                       cumulative_deaths[15],
                       cumulative_deaths[19]]
 
-#create list of bar colors
-#blues
+
+#### CREATE LISTS OF COLORS FOR BAR PLOTS ####
+#blues (for daily deaths)
 colors_blue = [blue()._colors[blue()._colors.index("LightSteelBlue")],
           blue()._colors[blue()._colors.index("PowderBlue")],
           blue()._colors[blue()._colors.index("SkyBlue")],
@@ -120,7 +125,7 @@ colors_blue = [blue()._colors[blue()._colors.index("LightSteelBlue")],
           blue()._colors[blue()._colors.index("MediumBlue")],
           blue()._colors[blue()._colors.index("MidnightBlue")]]
 
-#purples
+#purples (for cumulative deaths)
 colors_purple = [purple()._colors[purple()._colors.index("Thistle")],
                  purple()._colors[purple()._colors.index("Plum")],
                  purple()._colors[purple()._colors.index("Orchid")],
@@ -168,7 +173,7 @@ colors_orange = [orange()._colors[orange()._colors.index("OrangeRed")],
                  orange()._colors[orange()._colors.index("Orange")]]
                 
 
-#begin plotting data from worldometer
+#### PLOT DATA FROM WORLDOMETER ####
 #PLOT DAILY DEATH RATES
 #instantiate figure object
 daily_plot = figure(title="Daily Deaths due to COVID", x_range=countries, width=1400)
@@ -183,6 +188,7 @@ daily_plot.vbar(x=countries, top=daily_deaths, color=colors_blue, legend_label="
 daily_plot.legend.click_policy = "hide"
 
 #PLOT CUMULATIVE DEATH RATES
+#instantiate figure object
 cumulative_plot = figure(title="Cumulative Deaths due to COVID", x_range=countries, width=1400)
 
 #plot data
@@ -194,5 +200,6 @@ cumulative_plot.vbar(x=countries, top=cumulative_deaths, color=colors_purple, le
 #enable interactive legend
 cumulative_plot.legend.click_policy = "hide"
 
+#generate web page with both plots
 both_plots = column(daily_plot, cumulative_plot)
 show(both_plots)
