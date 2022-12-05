@@ -23,6 +23,7 @@ Instructions for use:
    - Data for 20 countries from Worldometer will be displayed on two graphs by executing the displayData.py script. The top plot shows the daily death rates and the 
    bottom plot shows cumulative death rates. Both plots have an interactive legend where users can specify if they want to see data from European countries, Asian
    countries, American countries (North and South) or all countries by clicking on the values in the legend.
+   - Data for 10 countries from NYT will be displayed by executing the displayDataNYT.py script. The plot shows the daily death rates with an interactive legend where users can specify which continent or region they want to see by clicking the values in the legend.
                 
                 
                 
