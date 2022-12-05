@@ -19,6 +19,12 @@ Instructions for use:
                 "Japan": "143.1", "Palau": "0", "New Zealand": "4.3", "France": "62.7", "Andorra": "0.1", "Monaco": "0"}
                 
                 
+3. Display the Data
+   - Data for 20 countries from Worldometer will be displayed on two graphs by executing the displayData.py script. The top plot shows the daily death rates and the 
+   bottom plot shows cumulative death rates. Both plots have an interactive legend where users can specify if they want to see data from European countries, Asian
+   countries, American countries (North and South) or all countries by clicking on the values in the legend.
+                
+                
                 
                 
                 
