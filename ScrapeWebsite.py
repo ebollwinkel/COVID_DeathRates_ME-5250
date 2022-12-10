@@ -107,25 +107,31 @@ def scrape_worldometer(country):
         for j in range(2,len(headers)):
             myDict.update({headers[j]:count_data[i][j]})
         dataDict.update({count_data[i][1]:myDict})
-    
-    deaths = {"Date Scraped" : str(dt.datetime.now())}
+        
+    myTime = str(dt.datetime.now())
+    deaths = {myTime : {"": ""}}
     keys = dataDict.keys()
     for i in keys:
         if (i == "Asia") or (i == "North America") or (i == "South America") or (i == "Europe") or (i == "Africa") or (i == "Oceania") or (i == "World"):
             continue
-        deaths.update({i: {"Total Deaths": dataDict[i]["Total Deaths"], "Daily Deaths": dataDict[i]["New Deaths"]}})
+        deaths[myTime].update({i: {"Total Deaths": dataDict[i]["Total Deaths"], "Daily Deaths": dataDict[i]["New Deaths"]}})
     fileDict = {}
     if country == "All":
-        fileDict.update(deaths)
-        jsonString = json.dumps(fileDict)
+        with open("data.json", "r+") as i:
+            fileDict = json.load(i)
         with open("data.json", "w") as i:
-            i.write(jsonString)
+            fileDict.update(deaths)
+            jsonString = json.dump(fileDict, i)
+            
     else:
-        fileDict.update(deaths["Date Scraped"])
-        fileDict.update(deaths[country])
-        jsonString = json.dumps(fileDict)
+        
+        with open("data.json", "r+") as i:
+            fileDict = json.load(i)
         with open("data.json", "w") as i:
-            i.write(jsonString)
+            fileDict.update(deaths["Date Scraped"])
+            fileDict.update(deaths[country])
+            jsonString = json.dump(fileDict, i)
+            
     
     #print(dataDict)
 
