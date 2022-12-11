@@ -300,7 +300,3 @@ daily_plot_NYT.legend.click_policy = "hide"
 #generate web page with both plots
 plots = column(daily_plot, cumulative_plot, daily_plot_NYT)
 show(plots)
-
-
-
-
