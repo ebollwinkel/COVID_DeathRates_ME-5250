@@ -21,3 +21,4 @@ Instructions for use:
                 
 3. Display the Data                
    - Executing the displayData3.py script will display three plots. The top plot shows the daily death rates and the middle plot shows cumulative death rates from Worldometer for 20 countries, and the bottom plot shows the daily death rates from NYT for 10 countries. Each plot has an interactive legend where users can specify which continent or region they want to see by clicking the values in the legend.
+
