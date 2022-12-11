@@ -9,7 +9,7 @@ Instructions for use:
   For example: 
       scrape_country("USA", "NYT") --> returns 10 countries and their daily death rates
       scrape_country("USA", "Worldometer") --> returns death rates for "USA"
-      scrape_country("All", "Worldomenter") --> returns death rates for all availabe countries
+      scrape_country("All", "Worldometer") --> returns death rates for all availabe countries
   
 2. Save the json file
     - Data for both will be saved in dictionaries with a time stamp as the first entry. Country names are the keys and death rates are the values.
@@ -19,13 +19,5 @@ Instructions for use:
                 "Japan": "143.1", "Palau": "0", "New Zealand": "4.3", "France": "62.7", "Andorra": "0.1", "Monaco": "0"}
                 
                 
-3. Display the Data
-   - Data for 20 countries from Worldometer will be displayed on two graphs by executing the displayData.py script. The top plot shows the daily death rates and the 
-   bottom plot shows cumulative death rates. Both plots have an interactive legend where users can specify if they want to see data from European countries, Asian
-   countries, American countries (North and South) or all countries by clicking on the values in the legend.
-   - Data for 10 countries from NYT will be displayed by executing the displayDataNYT.py script. The plot shows the daily death rates with an interactive legend where users can specify which continent or region they want to see by clicking the values in the legend.
-                
-                
-                
-                
-                
+3. Display the Data                
+   - Executing the displayData3.py script will display three plots. The top plot shows the daily death rates and the middle plot shows cumulative death rates from Worldometer for 20 countries, and the bottom plot shows the daily death rates from NYT for 10 countries. Each plot has an interactive legend where users can specify which continent or region they want to see by clicking the values in the legend.
