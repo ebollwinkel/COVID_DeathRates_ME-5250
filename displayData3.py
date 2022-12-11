@@ -4,9 +4,10 @@
 #import json module
 import json
 
-#import bokeh module for plotting, changing plot colors, and plotting multiple plots
+#import bokeh module for plotting, changing plot colors, adding labels, and plotting multiple plots
 from bokeh.plotting import figure, output_file, show
 from bokeh.colors.groups import blue, purple, green, orange, brown, yellow
+from bokeh.models import LabelSet, ColumnDataSource
 from bokeh.layouts import column
 
 #### GET DATA FROM JSON FILE ####
@@ -270,6 +271,12 @@ daily_plot.vbar(x=countries_WoM, top=daily_deaths, color=colors_blue, legend_lab
 #enable interactive legend
 daily_plot.legend.click_policy = "hide"
 
+#add daily death number to top of bar
+data1 = {'x1':countries_WoM,'y1':daily_deaths,'label1':[str(i) for i in daily_deaths]}
+source1 = ColumnDataSource(data=data1)
+label1 = LabelSet(x='x1', y='y1',text='label1',source=source1, text_align='center')
+daily_plot.add_layout(label1)
+
 #PLOT CUMULATIVE DEATH RATES
 #instantiate figure object
 cumulative_plot = figure(title="Cumulative Deaths due to COVID\nWorldometer data", x_range=countries_WoM, width=1400)
@@ -282,6 +289,12 @@ cumulative_plot.vbar(x=countries_WoM, top=cumulative_deaths, color=colors_purple
 
 #enable interactive legend
 cumulative_plot.legend.click_policy = "hide"
+
+#add daily death number to top of bar
+data2 = {'x2':countries_WoM,'y2':cumulative_deaths,'label2':[str(i) for i in cumulative_deaths]}
+source2 = ColumnDataSource(data=data2)
+label2 = LabelSet(x='x2', y='y2',text='label2',source=source2, text_align='center')
+cumulative_plot.add_layout(label2)
 
 #### PLOT DATA FROM NYT ####
 #PLOT DAILY DEATH RATES
@@ -296,6 +309,12 @@ daily_plot_NYT.vbar(x=countries_NYT, top=daily_deaths_NYT, color=colors_blue_NYT
 
 #enable interactive legend
 daily_plot_NYT.legend.click_policy = "hide"
+
+#add daily death number to top of bar
+data3 = {'x3':countries_NYT,'y3':daily_deaths_NYT,'label3':[str(i) for i in daily_deaths_NYT]}
+source3 = ColumnDataSource(data=data3)
+label3 = LabelSet(x='x3', y='y3',text='label3',source=source3, text_align='center')
+daily_plot_NYT.add_layout(label3)
 
 #generate web page with both plots
 plots = column(daily_plot, cumulative_plot, daily_plot_NYT)
