@@ -18,18 +18,28 @@ with open('data.json') as json_data:
     covid_data = json.load(json_data)
 
 #create list of country names
-countries = list(covid_data.keys())
-countries = countries[2:22] #get rid of data that is not the name of a country
+all_countries = []
+for entry in covid_data:
+    all_countries.append(list(covid_data[entry].keys()))
+
+#flatten all_countries nested list
+countries = list()
+for sub_list in all_countries:
+    countries += sub_list
+
+countries = countries[1:21] #only use 20 countries for plot readability
 
 #initialize empty array for daily and cumulative deaths
 daily_deaths = []
 cumulative_deaths = []
 
 #loop through covid_data to fill arrays of daily and cumulative death rates
-for name in countries:
-    daily_deaths.append(covid_data[name]['Daily Deaths'])
-    cumulative_deaths.append(covid_data[name]['Total Deaths'])
-    
+
+for entry in covid_data:
+    for name in countries:
+        daily_deaths.append(covid_data[entry][name]['Daily Deaths'])
+        cumulative_deaths.append(covid_data[entry][name]['Total Deaths'])
+
 
 #split data into world regions
 #european countries
